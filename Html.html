@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: url(./background.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        padding-top: 70px;
+      }
+
+      nav {
+        box-sizing: border-box;
+        height: 70px;
+        width: 100%;
+        z-index: 10;
+        position: fixed;
+        top:0;
+        left: 0;
+      }
+
+      .quiz-container {
+        background-color: white;
+        width: 600px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      ul li {
+        list-style-type: none;
+        margin-bottom: 10 px;
+      }
+      ul li label {
+        cursor: pointer;
+      }
+      ul {
+        padding: 0;
+      }
+      .quiz-header {
+        padding: 1rem;
+      }
+      h2 {
+        padding: 1rem;
+        text-align: center;
+        margin: 0;
+      }
+
+      button {
+        background-color: #7b339b;
+        color: #fff;
+        border: none;
+        display: block;
+        width: 100%;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-family: "Open Sans", sans-serif;
+        padding: 1.1rem;
+      }
+      button:hover {
+        background-color: #732d91;
+      }
+      button:focus {
+        outline: none;
+        background-color: #5e3370;
+      }
+      li {
+        list-style: none;
+      }
+      
+      label.quizName {
+        font-size: 50px;
+        line-height: 80px;
+        text-shadow: 0px 2px black;
+        color: white;
+        top: 0;
+        margin-left: 30px;
+      }
+      nav ul {
+        float: right;
+        margin-right: 100px;
+        padding-bottom: 5px;
+      }
+      nav ul li {
+        display: inline-block;
+        margin: 0 5px;
+        line-height: 2px;
+      }
+      nav ul li a {
+        color: white;
+        font-size: 17px;
+        padding: 7px 13px;
+        border-radius: 5px;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      a:hover {
+        
+        color:#c40094;
+      }
+      nav a{
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="Quiz.html"> <label class="quizName">QUIZ</label> </a>
+      <ul>
+        <li><a href="./Quiz.html">Home</a></li>
+        <li><a href="./Html.html">HTML</a></li>
+        <li><a href="./Css.html">CSS</a></li>
+        <li><a href="./Js.html">JAVASCRIPT</a></li>
+      </ul>
+    </nav>
+
+    <div class="quiz-container" id="quiz">
+      <div class="quiz-header">
+        <h2 id="question">Question Text</h2>
+        <ul>
+          <li>
+            <input type="radio" name="answer" id="a" class="answer" />
+            <label for="a" id="a_text">Option</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="b" class="answer" />
+            <label for="b" id="b_text">Option</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="c" class="answer" />
+            <label for="c" id="c_text">Option</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="d" class="answer" />
+            <label for="d" id="d_text">Option</label>
+          </li>
+        </ul>
+      </div>
+      <button id="submit">Submit</button>
+    </div>
+    <script>
+      const quizData = [
+    {
+        question: "What does HTML stand for?",
+        a: "Hypertext Markdown Language",
+        b: "Hypertext Markup Language",
+        c: "Hypertext Machine Language",
+        d: "HyperText Mark Language",
+        correct: "b",
+    },
+    {
+        question: "Which of the following HTML elements is used for making any text bold?",
+        a: "<i>",
+        b: "<strong>",
+        c: "<b>",
+        d: "<em>",
+        correct: "b",
+    },
+    {
+        question: "Which HTML element is used for displaying a paragraph?",
+        a: "<paragraph>",
+        b: "<pg>",
+        c: "<p>",
+        d: "<para>",
+        correct: "c",
+    },
+    {
+        question: "How can you create an ordered list in HTML?",
+        a: "<list>",
+        b: "<ul>",
+        c: "<ol>",
+        d: "<dl>",
+        correct: "c",
+    },
+    {
+        question: "Which HTML element defines the title of a document?",
+        a: "<meta>",
+        b: "<title>",
+        c: "<head>",
+        d: "<header>",
+        correct: "b",
+    },
+    {
+        question: "What is the correct HTML element for inserting a line break?",
+        a: "<br>",
+        b: "<break>",
+        c: "<lb>",
+        d: "<linebreak>",
+        correct: "a",
+    },
+    {
+        question: "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+        a: "src",
+        b: "alt",
+        c: "title",
+        d: "longdesc",
+        correct: "b",
+    },
+    {
+        question: "In HTML, which attribute is used to specify that an input field must be filled out?",
+        a: "placeholder",
+        b: "required",
+        c: "validate",
+        d: "formvalidate",
+        correct: "b",
+    },
+    {
+        question: "Which HTML element is used to specify a footer for a document or section?",
+        a: "<bottom>",
+        b: "<footer>",
+        c: "<section>",
+        d: "<aside>",
+        correct: "b",
+    },
+    {
+        question: "What does the <a> HTML tag stand for?",
+        a: "Article",
+        b: "Anchor",
+        c: "Application",
+        d: "Array",
+        correct: "b",
+    },
+    {
+        question: "Which doctype is correct for HTML5?",
+        a: "<!DOCTYPE HTML5>",
+        b: "<!DOCTYPE html>",
+        c: "<!HTML5>",
+        d: "<!DOCTYPE>",
+        correct: "b",
+    },
+    {
+        question: "Which HTML element is used for specifying a header for a document or section?",
+        a: "<header>",
+        b: "<head>",
+        c: "<top>",
+        d: "<section>",
+        correct: "a",
+    },
+    {
+        question: "Which HTML element is used to define the internal style sheet?",
+        a: "<css>",
+        b: "<script>",
+        c: "<style>",
+        d: "<styles>",
+        correct: "c",
+    },
+    {
+        question: "Which HTML element is used to display a scalar measurement within a range?",
+        a: "<measure>",
+        b: "<gauge>",
+        c: "<range>",
+        d: "<meter>",
+        correct: "d",
+    },
+    {
+        question: "What is the purpose of the <nav> element in HTML?",
+        a: "Creating a navigation bar",
+        b: "Linking to external documents",
+        c: "Navigating through the document",
+        d: "Creating a dynamic menu",
+        correct: "a",
+    },
+    {
+        question: "How can you make a numbered list in HTML?",
+        a: "<dl>",
+        b: "<ol>",
+        c: "<list>",
+        d: "<ul>",
+        correct: "b",
+    },
+    {
+        question: "What is the correct HTML for making a text input field?",
+        a: "<input type='text'>",
+        b: "<textfield>",
+        c: "<textinput type='text'>",
+        d: "<input type='textfield'>",
+        correct: "a",
+    },
+    {
+        question: "Which HTML element is used to define important text?",
+        a: "<strong>",
+        b: "<important>",
+        c: "<b>",
+        d: "<imp>",
+        correct: "a",
+    },
+    {
+        question: "What is the correct HTML for creating a hyperlink?",
+        a: "<a href='http://www.example.com'>Example</a>",
+        b: "<link http://www.example.com'>Example</link>",
+        c: "<a url='http://www.example.com'>Example</a>",
+        d: "<a>http://www.example.com</a>",
+        correct: "a",
+    },
+    {
+        question: "Which HTML tag is used to define an inline frame?",
+        a: "<frame>",
+        b: "<iframe>",
+        c: "<frameset>",
+        d: "<inlineframe>",
+        correct: "b",
+    },
+    {
+        question: "What is the correct HTML element for playing video files?",
+        a: "<video>",
+        b: "<media>",
+        c: "<movie>",
+        d: "<mp4>",
+        correct: "a",
+    },
+    {
+        question: "Which HTML element is used to specify a header for a table?",
+        a: "<thead>",
+        b: "<header>",
+        c: "<tablehead>",
+        d: "<top>",
+        correct: "a",
+    },
+    {
+        question: "Which element is used in HTML to create a dropdown list?",
+        a: "<list>",
+        b: "<select>",
+        c: "<dropdown>",
+        d: "<option>",
+        correct: "b",
+    },
+    {
+        question: "What is the correct HTML element for inserting a large block of text?",
+        a: "<textblock>",
+        b: "<textarea>",
+        c: "<paragraph>",
+        d: "<block>",
+        correct: "b",
+    },
+    {
+        question: "Which HTML attribute is used to define inline styles?",
+        a: "class",
+        b: "style",
+        c: "styles",
+        d: "font",
+        correct: "b",
+    }
+];
+
+       
+
+      const quiz = document.getElementById("quiz");
+      const answerElements = document.querySelectorAll(".answer");
+      const questionElement = document.getElementById("question");
+      const a_text = document.getElementById("a_text");
+      const b_text = document.getElementById("b_text");
+      const c_text = document.getElementById("c_text");
+      const d_text = document.getElementById("d_text");
+      const submitButton = document.getElementById("submit");
+
+      let currentQuiz = 0;
+      let score = 0;
+
+      const deselectAnswers = () => {
+        answerElements.forEach((answer) => (answer.checked = false));
+      };
+
+      const getSelected = () => {
+        let answer;
+        answerElements.forEach((answerElement) => {
+          if (answerElement.checked) answer = answerElement.id;
+        });
+        return answer;
+      };
+
+      const loadQuiz = () => {
+        deselectAnswers();
+        const currentQuizData = quizData[currentQuiz];
+        questionElement.innerHTML = currentQuizData.question;
+        a_text.innerText = currentQuizData.a;
+        b_text.innerText = currentQuizData.b;
+        c_text.innerText = currentQuizData.c;
+        d_text.innerText = currentQuizData.d;
+      };
+      loadQuiz();
+
+      submitButton.addEventListener("click", () => {
+        const answer = getSelected();
+        if (answer) {
+          if (answer === quizData[currentQuiz].correct) score++;
+          currentQuiz++;
+          if (currentQuiz < quizData.length) loadQuiz();
+          else {
+            quiz.innerHTML = `
+                <h2> You answered ${score}/${quizData.length} questions correctly</h2>
+                <button onclick="history.go(0)"> Play Again</button>`;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

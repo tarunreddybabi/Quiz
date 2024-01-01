@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: url(./background.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        padding-top: 70px;
+      }
+
+      nav {
+        box-sizing: border-box;
+        height: 70px;
+        width: 100%;
+        z-index: 10;
+        position: fixed;
+        top:0;
+        left: 0;
+      }
+
+      .quiz-container {
+        background-color: white;
+        width: 600px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      ul li {
+        list-style-type: none;
+        margin-bottom: 10 px;
+      }
+      ul li label {
+        cursor: pointer;
+      }
+      ul {
+        padding: 0;
+      }
+      .quiz-header {
+        padding: 1rem;
+      }
+      h2 {
+        padding: 1rem;
+        text-align: center;
+        margin: 0;
+      }
+
+      button {
+        background-color: #7b339b;
+        color: #fff;
+        border: none;
+        display: block;
+        width: 100%;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-family: "Open Sans", sans-serif;
+        padding: 1.1rem;
+      }
+      button:hover {
+        background-color: #732d91;
+      }
+      button:focus {
+        outline: none;
+        background-color: #5e3370;
+      }
+      li {
+        list-style: none;
+      }
+      
+      label.quizName {
+        font-size: 50px;
+        line-height: 80px;
+        text-shadow: 0px 2px black;
+        color: white;
+        top: 0;
+        margin-left: 30px;
+      }
+      nav ul {
+        float: right;
+        margin-right: 100px;
+        padding-bottom: 5px;
+      }
+      nav ul li {
+        display: inline-block;
+        margin: 0 5px;
+        line-height: 2px;
+      }
+      nav ul li a {
+        color: white;
+        font-size: 17px;
+        padding: 7px 13px;
+        border-radius: 5px;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      a:hover {
+        
+        color:#c40094;
+      }
+      nav a{
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="Quiz.html"> <label class="quizName">QUIZ</label> </a>
+      <ul>
+        <li><a href="./Quiz.html">Home</a></li>
+        <li><a href="./Html.html">HTML</a></li>
+        <li><a href="./Css.html">CSS</a></li>
+        <li><a href="./Js.html">JAVASCRIPT</a></li>
+      </ul>
+    </nav>
+
+    <div class="quiz-container" id="quiz">
+      <div class="quiz-header">
+        <h2 id="question">Question Text</h2>
+        <ul>
+          <li>
+            <input type="radio" name="answer" id="a" class="answer" />
+            <label for="a" id="a_text">Option</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="b" class="answer" />
+            <label for="b" id="b_text">Option</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="c" class="answer" />
+            <label for="c" id="c_text">Option</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="d" class="answer" />
+            <label for="d" id="d_text">Option</label>
+          </li>
+        </ul>
+      </div>
+      <button id="submit">Submit</button>
+    </div>
+    <script>
+    const quizData = [
+  {
+    question: "What does JS stand for?",
+    a: "Java script",
+    b: "java scripting",
+    c: "Hypertext Machine Language",
+    d: "HyperText Mark Language",
+    correct: "a",
+  },
+  {
+    question: "Which keyword is used to declare a variable in JavaScript?",
+    a: "var",
+    b: "let",
+    c: "const",
+    d: "both b and c",
+    correct: "d",
+  },
+  {
+    question: "What is the primary purpose of JavaScript?",
+    a: "Styling web pages",
+    b: "Enhancing user interfaces",
+    c: "Database management",
+    d: "Server-side scripting",
+    correct: "b",
+  },
+  {
+    question: "What is the result of the expression '2' + 2 in JavaScript?",
+    a: "4",
+    b: "22",
+    c: "Error",
+    d: "NaN",
+    correct: "b",
+  },
+  {
+    question: "How do you comment in JavaScript?",
+    a: "// This is a comment",
+    b: "/* This is a comment */",
+    c: "# This is a comment",
+    d: "-- This is a comment",
+    correct: "a",
+  },
+  {
+    question: "Which function is used to output data in the console in JavaScript?",
+    a: "console.log()",
+    b: "print()",
+    c: "write()",
+    d: "output()",
+    correct: "a",
+  },
+  {
+    question: "What is the purpose of the 'typeof' operator in JavaScript?",
+    a: "To check if a variable is defined",
+    b: "To determine the type of a variable",
+    c: "To create a new variable",
+    d: "To concatenate strings",
+    correct: "b",
+  },
+  {
+    question: "What is the purpose of the 'document.getElementById()' method?",
+    a: "To get an element by class name",
+    b: "To get an element by tag name",
+    c: "To get an element by ID",
+    d: "To get an element by name",
+    correct: "c",
+  },
+  {
+    question: "What does the acronym 'JSON' stand for?",
+    a: "JavaScript Object Notation",
+    b: "JavaScript Oriented Networking",
+    c: "JavaScript Object Naming",
+    d: "JavaScript Ordered Network",
+    correct: "a",
+  },
+  {
+    question: "What is the purpose of the 'this' keyword in JavaScript?",
+    a: "To refer to the current function",
+    b: "To refer to the global object",
+    c: "To refer to the calling object",
+    d: "To refer to a specific element",
+    correct: "c",
+  },
+];
+
+
+      const quiz = document.getElementById("quiz");
+      const answerElements = document.querySelectorAll(".answer");
+      const questionElement = document.getElementById("question");
+      const a_text = document.getElementById("a_text");
+      const b_text = document.getElementById("b_text");
+      const c_text = document.getElementById("c_text");
+      const d_text = document.getElementById("d_text");
+      const submitButton = document.getElementById("submit");
+
+      let currentQuiz = 0;
+      let score = 0;
+
+      const deselectAnswers = () => {
+        answerElements.forEach((answer) => (answer.checked = false));
+      };
+
+      const getSelected = () => {
+        let answer;
+        answerElements.forEach((answerElement) => {
+          if (answerElement.checked) answer = answerElement.id;
+        });
+        return answer;
+      };
+
+      const loadQuiz = () => {
+        deselectAnswers();
+        const currentQuizData = quizData[currentQuiz];
+        questionElement.innerHTML = currentQuizData.question;
+        a_text.innerText = currentQuizData.a;
+        b_text.innerText = currentQuizData.b;
+        c_text.innerText = currentQuizData.c;
+        d_text.innerText = currentQuizData.d;
+      };
+      loadQuiz();
+
+      submitButton.addEventListener("click", () => {
+        const answer = getSelected();
+        if (answer) {
+          if (answer === quizData[currentQuiz].correct) score++;
+          currentQuiz++;
+          if (currentQuiz < quizData.length) loadQuiz();
+          else {
+            quiz.innerHTML = `
+                <h2> You answered ${score}/${quizData.length} questions correctly</h2>
+                <button onclick="history.go(0)"> Play Again</button>`;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

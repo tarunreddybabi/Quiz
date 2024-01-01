@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: url(./background.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        padding-top: 70px;
+      }
+
+      nav {
+        box-sizing: border-box;
+        height: 70px;
+        width: 100%;
+        z-index: 10;
+        position: fixed;
+        top:0;
+        left: 0;
+      }
+
+      .quiz-container {
+        background-color: white;
+        width: 600px;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      ul li {
+        list-style-type: none;
+        margin-bottom: 10 px;
+      }
+      ul li label {
+        cursor: pointer;
+      }
+      ul {
+        padding: 0;
+      }
+      .quiz-header {
+        padding: 1rem;
+      }
+      h2 {
+        padding: 1rem;
+        text-align: center;
+        margin: 0;
+      }
+
+      button {
+        background-color: #7b339b;
+        color: #fff;
+        border: none;
+        display: block;
+        width: 100%;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-family: "Open Sans", sans-serif;
+        padding: 1.1rem;
+      }
+      button:hover {
+        background-color: #732d91;
+      }
+      button:focus {
+        outline: none;
+        background-color: #5e3370;
+      }
+      li {
+        list-style: none;
+      }
+      
+      label.quizName {
+        font-size: 50px;
+        line-height: 80px;
+        text-shadow: 0px 2px black;
+        color: white;
+        top: 0;
+        margin-left: 30px;
+      }
+      nav ul {
+        float: right;
+        margin-right: 100px;
+        padding-bottom: 5px;
+      }
+      nav ul li {
+        display: inline-block;
+        margin: 0 5px;
+        line-height: 2px;
+      }
+      nav ul li a {
+        color: white;
+        font-size: 17px;
+        padding: 7px 13px;
+        border-radius: 5px;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      a:hover {
+        
+        color:#c40094;
+      }
+      nav a{
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="Quiz.html"> <label class="quizName">QUIZ</label> </a>
+      <ul>
+        <li><a href="./Quiz.html">Home</a></li>
+        <li><a href="./Html.html">HTML</a></li>
+        <li><a href="./Css.html">CSS</a></li>
+        <li><a href="./Js.html">JAVASCRIPT</a></li>
+      </ul>
+    </nav>
+
+    <div class="quiz-container" id="quiz">
+      <div class="quiz-header">
+        <h2 id="question">Question Text</h2>
+        <ul>
+          <li>
+            <input type="radio" name="answer" id="a" class="answer" />
+            <label for="a" id="a_text">Option</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="b" class="answer" />
+            <label for="b" id="b_text">Option</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="c" class="answer" />
+            <label for="c" id="c_text">Option</label>
+          </li>
+          <li>
+            <input type="radio" name="answer" id="d" class="answer" />
+            <label for="d" id="d_text">Option</label>
+          </li>
+        </ul>
+      </div>
+      <button id="submit">Submit</button>
+    </div>
+    <script>
+     const quizData = [
+  {
+    question: "What does CSS stand for?",
+    a: "Computing Style Sheet",
+    b: "Creative Style System",
+    c: "Cascading Style Sheets",
+    d: "Colorful Style Sheets",
+    correct: "c",
+  },
+  {
+    question: "Which HTML tag is used to define an internal style sheet?",
+    a: "<css>",
+    b: "<script>",
+    c: "<style>",
+    d: "<link>",
+    correct: "c",
+  },
+  {
+    question: "Which property is used to change the background color?",
+    a: "color",
+    b: "bgcolor",
+    c: "background-color",
+    d: "back-color",
+    correct: "c",
+  },
+  {
+    question: "Which CSS property controls the text size?",
+    a: "font-size",
+    b: "text-size",
+    c: "font-style",
+    d: "text-style",
+    correct: "a",
+  },
+  {
+    question: "How do you make each word in a text start with a capital letter?",
+    a: "text-transform:capitalize",
+    b: "text-transform:uppercase",
+    c: "text-style:capitalize",
+    d: "font-capital:capitalize",
+    correct: "a",
+  },
+  {
+    question: "How do you select an element with id 'demo'?",
+    a: "demo",
+    b: "#demo",
+    c: ".demo",
+    d: "*demo",
+    correct: "b",
+  },
+  {
+    question: "How do you select elements with class name 'test'?",
+    a: "#test",
+    b: ".test",
+    c: "test",
+    d: "*test",
+    correct: "b",
+  },
+  {
+    question: "How do you select all p elements inside a div element?",
+    a: "div + p",
+    b: "div p",
+    c: "div.p",
+    d: "div, p",
+    correct: "b",
+  },
+  {
+    question: "Which property is used to change the left margin of an element?",
+    a: "margin-left",
+    b: "indent",
+    c: "padding-left",
+    d: "margin",
+    correct: "a",
+  },
+  {
+    question: "How do you display hyperlinks without an underline?",
+    a: "a {text-decoration:no-underline;}",
+    b: "a {decoration:no-underline;}",
+    c: "a {underline:none;}",
+    d: "a {text-decoration:none;}",
+    correct: "d",
+  },
+  {
+    question: "How do you make a list that lists its items with squares?",
+    a: "list-style-type: square;",
+    b: "list-type: square;",
+    c: "list: square;",
+    d: "list-style: square;",
+    correct: "a",
+  },
+  {
+    question: "Which property is used to change the font of an element?",
+    a: "font-family",
+    b: "font-weight",
+    c: "font-style",
+    d: "font-size",
+    correct: "a",
+  },
+  {
+    question: "How do you make the text bold?",
+    a: "style:bold;",
+    b: "font:bold;",
+    c: "font-weight:bold;",
+    d: "text:bold;",
+    correct: "c",
+  },
+  {
+    question: "How do you display a border like this: The top border = 10 pixels, The bottom border = 5 pixels, The left border = 20 pixels, The right border = 1pixel?",
+    a: "border-width:10px 1px 5px 20px;",
+    b: "border-width:10px 20px 5px 1px;",
+    c: "border-width:5px 20px 10px 1px;",
+    d: "border-width:10px 5px 20px 1px;",
+    correct: "a",
+  },
+  {
+    question: "Which property is used to change the font color?",
+    a: "font-color",
+    b: "color",
+    c: "text-color",
+    d: "background-color",
+    correct: "b",
+  },
+  {
+    question: "Which CSS property controls the text alignment?",
+    a: "text-align",
+    b: "font-align",
+    c: "text-decoration",
+    d: "font-style",
+    correct: "a",
+  },
+  {
+    question: "What is the default value of the position property?",
+    a: "fixed",
+    b: "static",
+    c: "relative",
+    d: "absolute",
+    correct: "b",
+  },
+  {
+    question: "Which property is used to add space around sections of content?",
+    a: "spacing",
+    b: "margin",
+    c: "border",
+    d: "padding",
+    correct: "b",
+  },
+  {
+    question: "Which property is used to make the text italic?",
+    a: "font-style: italic;",
+    b: "text-style: italic;",
+    c: "font: italic;",
+    d: "style: italic;",
+    correct: "a",
+  },
+  {
+    question: "How do you select all p elements with a lang attribute?",
+    a: "p [lang]",
+    b: "p = 'lang'",
+    c: "p.lang",
+    d: "p[lang]",
+    correct: "d",
+  },
+  {
+    question: "Which is the correct CSS syntax?",
+    a: "body {color:black;}",
+    b: "{body;color:black;}",
+    c: "{body:color=black;}",
+    d: "body:color{black;}",
+    correct: "a",
+  },
+  {
+    question: "Which property is used to specify the stacking order of elements?",
+    a: "z-index",
+    b: "order",
+    c: "stack",
+    d: "index",
+    correct: "a",
+  },
+  {
+    question: "Which property is used to change the font size of an element?",
+    a: "font-style",
+    b: "text-style",
+    c: "font-size",
+    d: "text-size",
+    correct: "c",
+  },
+  {
+    question: "What does the 'opacity' property do?",
+    a: "Changes the transparency of an element",
+    b: "Makes an element stand out",
+    c: "Changes the color of an element",
+    d: "Adjusts the size of an element",
+    correct: "a",
+  },
+  {
+    question: "Which of the following is a valid CSS comment?",
+    a: "// This is a comment",
+    b: "/* This is a comment */",
+    c: "<!-- This is a comment -->",
+    d: "# This is a comment #",
+    correct: "b",
+  }
+];
+
+
+      const quiz = document.getElementById("quiz");
+      const answerElements = document.querySelectorAll(".answer");
+      const questionElement = document.getElementById("question");
+      const a_text = document.getElementById("a_text");
+      const b_text = document.getElementById("b_text");
+      const c_text = document.getElementById("c_text");
+      const d_text = document.getElementById("d_text");
+      const submitButton = document.getElementById("submit");
+
+      let currentQuiz = 0;
+      let score = 0;
+
+      const deselectAnswers = () => {
+        answerElements.forEach((answer) => (answer.checked = false));
+      };
+
+      const getSelected = () => {
+        let answer;
+        answerElements.forEach((answerElement) => {
+          if (answerElement.checked) answer = answerElement.id;
+        });
+        return answer;
+      };
+
+      const loadQuiz = () => {
+        deselectAnswers();
+        const currentQuizData = quizData[currentQuiz];
+        questionElement.innerHTML = currentQuizData.question;
+        a_text.innerText = currentQuizData.a;
+        b_text.innerText = currentQuizData.b;
+        c_text.innerText = currentQuizData.c;
+        d_text.innerText = currentQuizData.d;
+      };
+      loadQuiz();
+
+      submitButton.addEventListener("click", () => {
+        const answer = getSelected();
+        if (answer) {
+          if (answer === quizData[currentQuiz].correct) score++;
+          currentQuiz++;
+          if (currentQuiz < quizData.length) loadQuiz();
+          else {
+            quiz.innerHTML = `
+                <h2> You answered ${score}/${quizData.length} questions correctly</h2>
+                <button onclick="history.go(0)"> Play Again</button>`;
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
