@@ -25,13 +25,14 @@
         width: 100%;
         z-index: 10;
         position: fixed;
-        top:0;
+        top: 0;
         left: 0;
       }
 
       .quiz-container {
         background-color: white;
         width: 600px;
+        margin-bottom: 100px;
         padding: 20px;
         border-radius: 8px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -76,7 +77,7 @@
       li {
         list-style: none;
       }
-      
+
       label.quizName {
         font-size: 50px;
         line-height: 80px;
@@ -104,11 +105,22 @@
         text-transform: uppercase;
       }
       a:hover {
-        
-        color:#c40094;
+        color: #c40094;
       }
-      nav a{
+      nav a {
         text-decoration: none;
+      }
+      div h1 {
+        text-align: center;
+      }
+      li label {
+        font-weight: bold;
+      }
+      @media screen and (max-width: 460px) {
+        nav ul {
+          float: left;
+          display: flex;
+        }
       }
     </style>
   </head>
@@ -125,6 +137,7 @@
 
     <div class="quiz-container" id="quiz">
       <div class="quiz-header">
+        <h1>Java Script Quiz</h1>
         <h2 id="question">Question Text</h2>
         <ul>
           <li>
@@ -145,92 +158,107 @@
           </li>
         </ul>
       </div>
+      <div
+        id="correct-answer"
+        style="
+          color: black;
+          display: none;
+          font-size: larger;
+          font-weight: bolder;
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+            sans-serif;
+        "
+      ></div>
       <button id="submit">Submit</button>
     </div>
     <script>
-    const quizData = [
-  {
-    question: "What does JS stand for?",
-    a: "Java script",
-    b: "java scripting",
-    c: "Hypertext Machine Language",
-    d: "HyperText Mark Language",
-    correct: "a",
-  },
-  {
-    question: "Which keyword is used to declare a variable in JavaScript?",
-    a: "var",
-    b: "let",
-    c: "const",
-    d: "both b and c",
-    correct: "d",
-  },
-  {
-    question: "What is the primary purpose of JavaScript?",
-    a: "Styling web pages",
-    b: "Enhancing user interfaces",
-    c: "Database management",
-    d: "Server-side scripting",
-    correct: "b",
-  },
-  {
-    question: "What is the result of the expression '2' + 2 in JavaScript?",
-    a: "4",
-    b: "22",
-    c: "Error",
-    d: "NaN",
-    correct: "b",
-  },
-  {
-    question: "How do you comment in JavaScript?",
-    a: "// This is a comment",
-    b: "/* This is a comment */",
-    c: "# This is a comment",
-    d: "-- This is a comment",
-    correct: "a",
-  },
-  {
-    question: "Which function is used to output data in the console in JavaScript?",
-    a: "console.log()",
-    b: "print()",
-    c: "write()",
-    d: "output()",
-    correct: "a",
-  },
-  {
-    question: "What is the purpose of the 'typeof' operator in JavaScript?",
-    a: "To check if a variable is defined",
-    b: "To determine the type of a variable",
-    c: "To create a new variable",
-    d: "To concatenate strings",
-    correct: "b",
-  },
-  {
-    question: "What is the purpose of the 'document.getElementById()' method?",
-    a: "To get an element by class name",
-    b: "To get an element by tag name",
-    c: "To get an element by ID",
-    d: "To get an element by name",
-    correct: "c",
-  },
-  {
-    question: "What does the acronym 'JSON' stand for?",
-    a: "JavaScript Object Notation",
-    b: "JavaScript Oriented Networking",
-    c: "JavaScript Object Naming",
-    d: "JavaScript Ordered Network",
-    correct: "a",
-  },
-  {
-    question: "What is the purpose of the 'this' keyword in JavaScript?",
-    a: "To refer to the current function",
-    b: "To refer to the global object",
-    c: "To refer to the calling object",
-    d: "To refer to a specific element",
-    correct: "c",
-  },
-];
-
+      const quizData = [
+        {
+          question: "What does JS stand for?",
+          a: "Java script",
+          b: "java scripting",
+          c: "Hypertext Machine Language",
+          d: "HyperText Mark Language",
+          correct: "a",
+        },
+        {
+          question:
+            "Which keyword is used to declare a variable in JavaScript?",
+          a: "var",
+          b: "let",
+          c: "const",
+          d: "both b and c",
+          correct: "d",
+        },
+        {
+          question: "What is the primary purpose of JavaScript?",
+          a: "Styling web pages",
+          b: "Enhancing user interfaces",
+          c: "Database management",
+          d: "Server-side scripting",
+          correct: "b",
+        },
+        {
+          question:
+            "What is the result of the expression '2' + 2 in JavaScript?",
+          a: "4",
+          b: "22",
+          c: "Error",
+          d: "NaN",
+          correct: "b",
+        },
+        {
+          question: "How do you comment in JavaScript?",
+          a: "// This is a comment",
+          b: "/* This is a comment */",
+          c: "# This is a comment",
+          d: "-- This is a comment",
+          correct: "a",
+        },
+        {
+          question:
+            "Which function is used to output data in the console in JavaScript?",
+          a: "console.log()",
+          b: "print()",
+          c: "write()",
+          d: "output()",
+          correct: "a",
+        },
+        {
+          question:
+            "What is the purpose of the 'typeof' operator in JavaScript?",
+          a: "To check if a variable is defined",
+          b: "To determine the type of a variable",
+          c: "To create a new variable",
+          d: "To concatenate strings",
+          correct: "b",
+        },
+        {
+          question:
+            "What is the purpose of the 'document.getElementById()' method?",
+          a: "To get an element by class name",
+          b: "To get an element by tag name",
+          c: "To get an element by ID",
+          d: "To get an element by name",
+          correct: "c",
+        },
+        {
+          question: "What does the acronym 'JSON' stand for?",
+          a: "JavaScript Object Notation",
+          b: "JavaScript Oriented Networking",
+          c: "JavaScript Object Naming",
+          d: "JavaScript Ordered Network",
+          correct: "a",
+        },
+        {
+          question: "What is the purpose of the 'this' keyword in JavaScript?",
+          a: "To refer to the current function",
+          b: "To refer to the global object",
+          c: "To refer to the calling object",
+          d: "To refer to a specific element",
+          correct: "c",
+        },
+      ];
 
       const quiz = document.getElementById("quiz");
       const answerElements = document.querySelectorAll(".answer");
@@ -264,16 +292,39 @@
         b_text.innerText = currentQuizData.b;
         c_text.innerText = currentQuizData.c;
         d_text.innerText = currentQuizData.d;
+
+        const correctAnswerElement = document.getElementById("correct-answer");
+        correctAnswerElement.style.display = "none";
       };
       loadQuiz();
 
       submitButton.addEventListener("click", () => {
         const answer = getSelected();
+        const correctAnswerElement = document.getElementById("correct-answer");
+
         if (answer) {
-          if (answer === quizData[currentQuiz].correct) score++;
+          const currentQuizData = quizData[currentQuiz];
+
+          const isCorrect = answer === currentQuizData.correct;
+
+          if (isCorrect) {
+            quiz.style.backgroundColor = "#5cb85c";
+            score++;
+            correctAnswerElement.style.display = "none";
+          } else {
+            quiz.style.backgroundColor = "#d9534f";
+            correctAnswerElement.innerText = `Correct Answer: ${
+              currentQuizData[currentQuizData.correct]
+            }`;
+            correctAnswerElement.style.display = "block";
+          }
           currentQuiz++;
-          if (currentQuiz < quizData.length) loadQuiz();
-          else {
+          if (currentQuiz < quizData.length) {
+            setTimeout(() => {
+              quiz.style.backgroundColor = "white";
+              loadQuiz();
+            }, 2000);
+          } else {
             quiz.innerHTML = `
                 <h2> You answered ${score}/${quizData.length} questions correctly</h2>
                 <button onclick="history.go(0)"> Play Again</button>`;
