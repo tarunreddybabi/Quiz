@@ -49,12 +49,14 @@
       }
       .quiz-header {
         padding: 1rem;
-        text-align: left;
       }
       h2 {
         padding: 1rem;
         text-align: left;
         margin: 0;
+      }
+      h1 {
+        text-align: center;
       }
 
       button {
@@ -111,12 +113,6 @@
       nav a {
         text-decoration: none;
       }
-      div h1 {
-        text-align: center;
-      }
-      li label {
-        font-weight: bold;
-      }
       @media screen and (max-width: 460px) {
         nav ul {
           float: left;
@@ -129,7 +125,7 @@
     <nav>
       <a href="Quiz.html"> <label class="quizName">QUIZ</label> </a>
       <ul>
-        <li><a href="./Quiz.html" id="home">Home</a></li>
+        <li><a href="./Quiz.html">Home</a></li>
         <li><a href="./Html.html">HTML</a></li>
         <li><a href="./Css.html">CSS</a></li>
         <li><a href="./Js.html">JAVASCRIPT</a></li>
@@ -173,7 +169,7 @@
       <button id="submit">Submit</button>
     </div>
     <script>
-      const quizData = [
+    const quizData = [
         {
           question: "1) What does HTML stand for?",
           a: "Hypertext Markdown Language",
